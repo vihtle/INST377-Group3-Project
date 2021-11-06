@@ -1,14 +1,19 @@
 /* eslint-disable no-console */
 import express from 'express';
 import sequelize from 'sequelize';
-
 import db from '../database/initializeDB.js';
 
+import aoaController from '../server/controllers/aoaController.js';
+
 const router = express.Router();
+
 /* eruption_aoa endpoint */
 router.route('/eruption_aoa')
   .get(async(req, res) => {
     try {
+      const result = await db.sequelizeDB.query(aoaController.aoaGet, {
+        type: sequelize.QueryTypes.SELECT
+      });
       console.log('you touched the route!');
       res.json({message: 'touched eruption_aoa with GET'});
     } catch (err) {
@@ -227,39 +232,39 @@ router.route('/volcanos_has_references_table')
 
 /* vei endpoint */
 router.route('/vei')
-.get(async(req, res) => {
-  try {
-    console.log('you touched the route!');
-    res.json({message: 'touched vei with GET'});
-  } catch (err) {
-    res.json({error: 'something went wrong!'});
-  }
-})
-.put(async(req, res) => {
-  try {
-    res.json({message: 'touched vei with PUT'});
-  } catch (err) {
-    console.log(error);
-    res.json({error: 'something went wrong!'});
-  }
-})
+  .get(async(req, res) => {
+    try {
+      console.log('you touched the route!');
+      res.json({message: 'touched vei with GET'});
+    } catch (err) {
+      res.json({error: 'something went wrong!'});
+    }
+  })
+  .put(async(req, res) => {
+    try {
+      res.json({message: 'touched vei with PUT'});
+    } catch (err) {
+      console.log(error);
+      res.json({error: 'something went wrong!'});
+    }
+  })
 
-.post(async(req, res) => {
-  try {
-    res.json({message: 'touched vei with POST'});
-  } catch (err) {
-    console.log(error);
-    res.json({error: 'something went wrong!'});
-  }
-})
-.delete(async(req, res) => {
-  try {
-    res.json({message: 'touched vei with DELETE'});
-  } catch (err) {
-    console.log(error);
-    res.json({error: 'something went wrong!'});
-  }
-});
+  .post(async(req, res) => {
+    try {
+      res.json({message: 'touched vei with POST'});
+    } catch (err) {
+      console.log(error);
+      res.json({error: 'something went wrong!'});
+    }
+  })
+  .delete(async(req, res) => {
+    try {
+      res.json({message: 'touched vei with DELETE'});
+    } catch (err) {
+      console.log(error);
+      res.json({error: 'something went wrong!'});
+    }
+  });
 
 /* volcanos endpoint */
 router.route('/volcanos')
@@ -310,7 +315,6 @@ router.get('/dining', async (req, res) => {
     res.error('Server error');
   }
 });
-
 
 router.get('/dining/:hall_id', async (req, res) => {
   try {
