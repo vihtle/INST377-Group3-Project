@@ -75,6 +75,9 @@ There are no prewritten tests in the source repository currently
 `/api/eruption_freq` - API route for eruptions per year
   * GET - Returns data from a SELECT statement of the count of eruptions per year
 
+`/api/category_freq` - API route for confirmed eruptions per month
+  * GET - Returns data with the json response from a SELECT statement of the count of confirmed eruptions per month
+
 
 
   
